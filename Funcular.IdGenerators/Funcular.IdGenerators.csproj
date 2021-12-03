@@ -11,9 +11,9 @@
 		<Description>K-ordered, semi-random, distributed unique Id generator using base 36. Solves several weaknesses of integer, Guid and SequentialGuid identifiers.</Description>
 		<NeutralLanguage>en</NeutralLanguage>
 		<PackageTags>c# base-36 id-generator</PackageTags>
-		<RepositoryUrl>https://github.com/piranout/Funcular.IdGenerators</RepositoryUrl>
+		<RepositoryUrl>https://github.com/stepkillah/Funcular.IdGenerators</RepositoryUrl>
 		<RepositoryType></RepositoryType>
-		<PackageProjectUrl>https://github.com/piranout/Funcular.IdGenerators</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/stepkillah/Funcular.IdGenerators</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReleaseNotes>- Add support for NetStandard, NET5, NET6</PackageReleaseNotes>
