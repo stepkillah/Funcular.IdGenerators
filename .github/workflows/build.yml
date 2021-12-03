@@ -1,0 +1,29 @@
+name: Build and Push NuGet
+
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      packVersion: "3.0"
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Pack NuGet
+      run: dotnet pack ./Funcular.IdGenerators/Funcular.IdGenerators.csproj -o ./nuget_pack --no-build --no-restore /p:Version=$packVersion.$GITHUB_RUN_NUMBER
+    - name: Push NuGet
+      run: dotnet nuget push ./nuget_pack/*.nupkg -s https://nuget.pkg.github.com/stepkillah/index.json -k ${{secrets.GITHUB_TOKEN}} -n --skip-duplicate
