@@ -32,4 +32,4 @@ jobs:
     - name: Pack NuGet
       run: dotnet pack ./Funcular.IdGenerators/Funcular.IdGenerators.csproj -c $configuration -o ./nuget_pack --no-build --no-restore /p:Version=$packVersion.$GITHUB_RUN_NUMBER
     - name: Push NuGet
-      run: dotnet nuget push ./nuget_pack/*.nupkg -s https://nuget.pkg.github.com/stepkillah/index.json -k ${{secrets.PAT_PUBLISH}} -n --skip-duplicate
+      run: dotnet nuget push ./nuget_pack/*.nupkg -s https://nuget.pkg.github.com/stepkillah/index.json -k ${{secrets.GITHUB_TOKEN}} -n --skip-duplicate
