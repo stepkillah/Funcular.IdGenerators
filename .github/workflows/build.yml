@@ -30,4 +30,4 @@ jobs:
     - name: Pack NuGet
       run: dotnet pack ./Funcular.IdGenerators/Funcular.IdGenerators.csproj -o ./nuget_pack --no-build --no-restore /p:Version=$packVersion.$GITHUB_RUN_NUMBER
     - name: Push NuGet
-      run: dotnet nuget push ./nuget_pack/*.nupkg -s https://nuget.pkg.github.com/stepkillah/index.json -k ${{secrets.GITHUB_TOKEN}} -n --skip-duplicate
+      run: nuget push ./nuget_pack/*.nupkg -Source https://nuget.pkg.github.com/stepkillah/index.json -ApiKey ${{secrets.GITHUB_TOKEN}} -SkipDuplicate -NoSymbols
