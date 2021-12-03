@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       packVersion: "3.0"
+      configuration: "Release"
 
     steps:
     - uses: actions/checkout@v2
@@ -24,10 +25,10 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build -c $configuration --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test -c $configuration --no-build --verbosity normal
     - name: Pack NuGet
-      run: dotnet pack ./Funcular.IdGenerators/Funcular.IdGenerators.csproj -o ./nuget_pack --no-build --no-restore /p:Version=$packVersion.$GITHUB_RUN_NUMBER
+      run: dotnet pack ./Funcular.IdGenerators/Funcular.IdGenerators.csproj -$configuration -o ./nuget_pack --no-build --no-restore /p:Version=$packVersion.$GITHUB_RUN_NUMBER
     - name: Push NuGet
       run: nuget push ./nuget_pack/*.nupkg -Source https://nuget.pkg.github.com/stepkillah/index.json -ApiKey ${{secrets.GITHUB_TOKEN}} -SkipDuplicate -NoSymbols
